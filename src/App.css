@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.slow-spin {
+  animation: slow-spin 5s linear infinite; /* Adjust '5s' for slower/faster rotation */
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: inherit;  
+}
+
+/* custom slider arrow */
+.slick-next {
+  color: #4360ac !important;
+  background-color: #4360ac !important;
+  border-radius: 100% !important;
+  height: 18px !important;
+  left: 93% !important;
+}
+
+/* Tablet Screen  */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .slick-next {
+    left: 95% !important; 
+    height: 20px !important; 
+  }
+}
+/* Laptop Screen  */
+@media screen and (min-width: 1024px) {
+  .slick-next {
+    left: 98% !important; 
+    height: 20px !important; 
+  }
+}
+
+.slick-prev {
+  color: #4360ac !important;
+  background-color: #4360ac !important;
+  border-radius: 100% !important;
+  height: 18px !important;
+  transform: translate(148%, -50%) !important; 
+}
+
+
+.slick-list {
+  margin: 0 2px !important; 
+}
+
+@media screen and  (min-width: 1440px) {
+  /* .slider-container {
+    max-width: 2000px;
+    margin-left: 50px;
+  } */
+  .slick-list {
+    margin: 0 5px !important; 
+  }
+}
