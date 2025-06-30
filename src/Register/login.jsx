@@ -10,7 +10,7 @@ import { useAuth } from "../Context/authContext";
 import { GoogleLogin } from "@react-oauth/google";
 import "react-toastify/dist/ReactToastify.css";
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 const Login = () => {
   const navigate = useNavigate();

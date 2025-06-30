@@ -16,7 +16,7 @@ import axios from "axios";
 import { useAuth } from "../Context/authContext";
 
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 
 const Navbar = () => {
@@ -113,9 +113,9 @@ const Navbar = () => {
     >
       <div className=" !w-full  px-2 sm:px-2 lg:px-4">
         <div className="relative flex h-24 w-full items-center justify-between">
-          <div className="flex shrink-0 items-center">
+          <div className="flex shrink-0 items-center cursor-pointer">
             <img
-              alt="Your Company"
+              alt="Company Logo"
               src={logo}
               onClick={() => { navigate("/"); window.scrollTo({ top: 0, behavior: "smooth" }) }}
               className="h-14 w-auto sm:h-14 md:h-14 lg:h-14 xl:h-20"

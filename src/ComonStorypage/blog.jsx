@@ -6,7 +6,7 @@ import icon from "../../src/images/Icon_1.png";
 import { useNavigate } from "react-router";
 
 
-const BASE_URL =  "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL =  "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 const Blog = () => {
     const navigate = useNavigate();

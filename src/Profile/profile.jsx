@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import icon from "../../src/images/Icon_1.png";
 
 
-const BASE_URL = "http://192.168.29.225:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com";
 
 const UserProfile = () => {
     const [initialValues, setInitialValues] = useState(null);

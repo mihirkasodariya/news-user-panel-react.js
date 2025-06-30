@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdAutoStories } from "react-icons/md";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { FaBlog} from "react-icons/fa6";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
@@ -33,11 +33,10 @@ function PrevArrow({ onClick }) {
   );
 }
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 // const BASE_URL = process.env.BACKEND_URL || "http://localhost:5000";
 
 const Home = () => {
-  const { id } = useParams();
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
@@ -83,7 +82,7 @@ const Home = () => {
         ]);
         if (randomRes.data.categoriesWithNews) {
           setRandomCategory(randomRes.data.categoriesWithNews || []);
-          const categoriesWithNews = randomRes.data.categoriesWithNews.map(
+          randomRes.data.categoriesWithNews.map(
             (item) => ({
               category: item.category,
               news: item.news || [], // Convert null to empty array
@@ -406,7 +405,7 @@ const Home = () => {
         </div>
       ) : (
         <div className="mt-20 overflow-hidden">
-          <div className="bg-slate-100 h-96 h-[480px]">
+          <div className="bg-slate-100 h-24rem h-[480px]">
             <div className="flex justify-between items-center pt-5 w-full px-10 sm:px-12 md:px-14 lg:px-14 xl:px-8 sm:w-full md:w-full xl:w-[95%] mx-auto">
               <div className="flex gap-2">
                 <MdAutoStories className="h-12 w-12 text-[#4360ac]" />

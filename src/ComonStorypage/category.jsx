@@ -8,7 +8,7 @@ import icon from "../../src/images/Icon_1.png";
 import { followCategory, unfollowCategory } from "../Utils/api";
 import { toast } from "react-toastify";
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 const Category = () => {
   const location = useLocation();

@@ -12,7 +12,7 @@ import { subscribeUser } from "../Utils/api";
 import icon from "../../src/images/Icon_1.png";
 
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 
 const services = [

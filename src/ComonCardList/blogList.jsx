@@ -3,8 +3,9 @@ import icon from "../../src/images/Icon_1.png";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import image from "../../src/images/Icon_1.png";
+import AdSenseAd from "../Components/AdSenseAd.jsx"; // adjust path as needed
 
-const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
+const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 
 const BlogList = () => {
@@ -46,7 +47,8 @@ const BlogList = () => {
       <div className="grid justify-center items-center w-full px-4 mx-auto sm:w-full md:w-full xl:w-[80%]">
         {/* Top Advertisement */}
         <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-20">
-          Advertisement
+          {/* Advertisement */}
+            <AdSenseAd/>
         </div>
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2">
