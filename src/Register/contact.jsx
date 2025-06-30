@@ -5,7 +5,7 @@ import emailimg from "../../src/images/contact-form.png";
 import { useLocation } from "react-router";
 
 
-const BASE_URL =  "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL =  "http://192.168.29.225:5000" || "http://localhost:5000";
 
 
 const Contact = () => {

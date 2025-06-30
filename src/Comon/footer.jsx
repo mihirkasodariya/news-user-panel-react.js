@@ -12,7 +12,7 @@ import { subscribeUser } from "../Utils/api";
 import icon from "../../src/images/Icon_1.png";
 
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 
 const services = [
@@ -206,7 +206,6 @@ const Footer = () => {
 
     try {
       const response = await subscribeUser(JSON.stringify(formData));
-      console.log("API Response:", response);
 
       if (response === true) {
         setMessage({
@@ -442,9 +441,9 @@ const Footer = () => {
         </footer>
       </div>
       <div className="bg-blue-50 pt-6 ">
-        <div className=" py-6 px-10 lg:px-28 flex flex-col lg:flex-row items-center justify-between mx-auto w-full">
-          <div className="text-center lg:text-left w-full lg:w-[60%]">
-            <h2 className="text-xl font-bold text-[#4360ac]">
+        <div className=" py-6 px-10 lg:px-96 flex flex-col lg:flex-row items-center justify-between mx-auto w-full">
+          <div className="text-center lg:text-left w-full">
+            <h2 className="pb-2 text-xl font-bold text-[#4360ac]">
               Join Our Newsletter
             </h2>
             <p className="text-gray-700 text-xs sm:text-sm">
@@ -453,38 +452,35 @@ const Footer = () => {
               straight to your Inbox.
             </p>
           </div>
-          <div className="w-full lg:w-1/3 mx-auto">
+          <div className="w-full max-w-md mx-auto px-4">
             <form
               onSubmit={handleSubmit}
-              className="mt-4 flex flex-col items-center sm:max-w-md md:max-w-xs mx-auto"
+              className="flex flex-col items-center gap-3"
             >
-              <div className="w-full flex flex-row justify-center">
+              <div className="w-full flex flex-col sm:flex-row items-center gap-2">
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter Your Email"
-                  className="p-1 text-sm border border-gray-300 focus:outline-none w-full sm:w-auto"
+                  placeholder="Enter your email"
+                  className="w-full flex-1 px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#4360ac]"
                   required
                 />
                 <button
                   type="submit"
-                  className="bg-[#4360ac] text-white text-xs sm:px-4 px-0 py-1 font-bold hover:bg-red-600 w-full sm:w-auto"
+                  className="w-full sm:w-auto px-5 py-2 text-sm font-semibold text-white rounded-md bg-gradient-to-r from-[#4360ac] to-[#2bace2] hover:from-[#2bace2] hover:to-[#4360ac] focus:outline-none focus:ring-2 focus:ring-[#2bace2] transition-all duration-300"
                 >
-                  SUBSCRIBE
+                  Subscribe
                 </button>
               </div>
 
-              {/* ✅ Centered message below input */}
               {message?.text && (
                 <p
-                  className={`text-sm mt-2 text-center ${message?.type === "success"
-                    ? "text-green-600"
-                    : "text-red-600"
+                  className={`text-sm text-center mt-1 ${message.type === "success" ? "text-green-600" : "text-red-600"
                     }`}
                 >
-                  {message?.text}
+                  {message.text}
                 </p>
               )}
             </form>

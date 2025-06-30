@@ -6,7 +6,7 @@ import icon from "../../src/images/Icon_1.png";
 import { useNavigate } from "react-router";
 
 
-const BASE_URL =  "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL =  "http://192.168.29.225:5000" || "http://localhost:5000";
 
 const Blog = () => {
     const navigate = useNavigate();
@@ -21,8 +21,6 @@ const Blog = () => {
       try {
         setLoading(true);
         const response = await axios.get(`${BASE_URL}/blog/all`);
-        // console.log("Articles Response:", response.data.Blogs);
-
         setArticles(response.data.Blogs);
       } catch (error) {
         console.error("Error fetching articles:", error);

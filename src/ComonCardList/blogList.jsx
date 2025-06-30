@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import image from "../../src/images/Icon_1.png";
 
-const BASE_URL =  "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 
 const BlogList = () => {
@@ -13,15 +13,13 @@ const BlogList = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
- 
+
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         setLoading(true);
         const response = await axios.get(`${BASE_URL}/blog/all`);
-        // console.log("Articles Response:", response.data.Blogs);
-
         setArticles(response.data.Blogs);
       } catch (error) {
         console.error("Error fetching articles:", error);
@@ -104,36 +102,41 @@ const BlogList = () => {
             </div>
 
             {/* Trending Stories List */}
-            {articles.slice(0, 6).map((item) => (
-              <div key={item._id} onClick={() => handleBlogNavigate(item)}>
-                <div className="flex flex-col items-center py-1 bg-white shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200">
-                  <img
-                    className="object-cover flex-shrink-0 w-24 h-20 md:w-24 md:h-20 rounded-t-lg md:rounded-none md:rounded-s-lg"
-                    src={`${BASE_URL}/${item.image?.replace(/\\/g, "/")}`}
-                    alt={item.blog}
-                  />
-                  <p className="cursor-pointer mb-3 font-bold text-base sm:text-sm md:text-sm lg:text-sm xl:text-sm px-2 py-2 text-black">
-                    {truncateText(item?.blog, 45)}
-                  </p>
+            {articles.slice(0, 6).map((item, index) => (
+              <React.Fragment key={item._id}>
+                <div onClick={() => handleBlogNavigate(item)}>
+                  <div className="flex flex-col items-center py-1 bg-white shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200">
+                    <img
+                      className="object-cover flex-shrink-0 w-24 h-20 md:w-24 md:h-20 rounded-t-lg md:rounded-none md:rounded-s-lg"
+                      src={`${BASE_URL}/${item.image?.replace(/\\/g, "/")}`}
+                      alt={item.blog}
+                    />
+                    <p className="cursor-pointer mb-3 font-bold text-base sm:text-sm md:text-sm lg:text-sm xl:text-sm px-2 py-2 text-black">
+                      {truncateText(item?.blog, 45)}
+                    </p>
+                  </div>
                 </div>
-              </div>
+
+                {/* Insert Advertisement after every 3 items */}
+                {(index + 1) % 3 === 0 && (
+                  <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
+                    Advertisement
+                  </div>
+                )}
+              </React.Fragment>
             ))}
 
-            {/* Bottom Sidebar Advertisement */}
-            <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-              Advertisement
-            </div>
           </div>
         </div>
 
         {/* Related Stories Section */}
-        <hr className="mt-3 hidden lg:grid" />
+        <hr className="mt-20 hidden lg:grid" />
 
-        <div className="slider-container w-full hidden lg:grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-          {loading ?  (
+        <div className="slider-container w-full hidden lg:grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6">
+          {loading ? (
             <div className="w-10 my-20 h-10 mx-auto flex items-center justify-center">
-            <img src={image} alt="" className="slow-spin" />
-          </div>
+              <img src={image} alt="" className="slow-spin" />
+            </div>
           ) : (
             articles.slice(0, 4).map((val) => (
               <div
@@ -163,7 +166,7 @@ const BlogList = () => {
               </div>
             ))
           )}
-          
+
         </div>
       </div>
     </div>

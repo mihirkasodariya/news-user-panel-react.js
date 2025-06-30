@@ -7,7 +7,7 @@ import emailimg from "../../src/images/contact-form.png";
 import { useAuth } from "../Context/authContext";
 
 // Better fallback logic
-const BASE_URL =  "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL =  "http://192.168.29.225:5000" || "http://localhost:5000";
 
 const Signup = () => {
   const navigate = useNavigate();

@@ -106,7 +106,7 @@ const Sponsored = () => {
           </div>
           <button
             type="button"
-            class="py-2 px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
+            className="py-2 px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
           >
             View More
           </button>
@@ -466,7 +466,7 @@ export default Sponsored;
 //                     onClick={(e) => {
 //                       handlenavigatetag(val.btn);
 //                     }}
-//                     class="relative uppercase inline-flex items-center justify-center font-semibold text-lg  px-5 py-2  overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-red-900 to-[#e64833] group-hover:from-[#e64833] group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+//                     className="relative uppercase inline-flex items-center justify-center font-semibold text-lg  px-5 py-2  overflow-hidden  text-gray-900 rounded-lg group bg-gradient-to-br from-red-900 to-[#e64833] group-hover:from-[#e64833] group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
 //                   >
 //                     {val.btn}
 //                   </button>
@@ -487,10 +487,10 @@ export default Sponsored;
 //             {slider.map((val) => (
 //               <>
 //                 <div className="border-l-4 h-20 border-[#e64833]">
-//                   <div class="flex flex-col  mx-2  bg-white    shadow md:flex-row md:max-w-xl  ">
-//                     <img class=" h-20" src={val.img} alt={val.name} />
-//                     <div class="flex flex-col justify-between pl-2 leading-normal">
-//                       <p class="mb-3 font-normal text-black">
+//                   <div className="flex flex-col  mx-2  bg-white    shadow md:flex-row md:max-w-xl  ">
+//                     <img className=" h-20" src={val.img} alt={val.name} />
+//                     <div className="flex flex-col justify-between pl-2 leading-normal">
+//                       <p className="mb-3 font-normal text-black">
 //                         {truncateText(val.description, characterLimit)}
 //                       </p>
 //                     </div>
@@ -521,7 +521,7 @@ export default Sponsored;
 //               // onClick={handlenavigate1}
 //               onClick={() => handlenavigate1("Stories", "Stories full of vigor and impact.")}
 //               // to={item === "Home" ? "/" : `/category/${item}`}
-//               class="py-2 px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
+//               className="py-2 px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
 //             >
 //               View More
 //             </button>
@@ -585,7 +585,7 @@ export default Sponsored;
 //           <button
 //             type="button"
 //             onClick={() => handlenavigate1("Insights", "Digging deeper in the accuracy")}
-//             class=" px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
+//             className=" px-5 mb-2 sm:text-sm text-xs font-medium shadow-md transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl focus:outline-none rounded-full border  dark:bg-white dark:text-black dark:border-[#e64833] dark:hover:text-white dark:hover:bg-[#e64833]"
 //           >
 //             View More
 //           </button>
@@ -1466,7 +1466,7 @@ export default Sponsored;
 //                 />
 //                 <div className="rounded-md bg-[#FFF6F6] p-4 my-5">
 //                 <h1 className="text-[#e64833] font-bold text-3xl">Summary</h1>
-//                 <ul class="list-disc  list-outside grid gap-4 px-4 py-2 text-xl marker:text-[#e64833] font-normal">
+//                 <ul className="list-disc  list-outside grid gap-4 px-4 py-2 text-xl marker:text-[#e64833] font-normal">
 
 //                   <li className="text-gray-500">
 //                     Now this is a story all about how, my life got
@@ -1502,14 +1502,14 @@ export default Sponsored;
 //                     <a
 //                       onClick={() => handlenavigate(item)}
 //                       key={item.id}
-//                       class="flex flex-col items-center py-1 bg-white   shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200 "
+//                       className="flex flex-col items-center py-1 bg-white   shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200 "
 //                     >
 //                       <img
-//                         class="object-cover w-28 rounded-t-lg h-24 md:rounded-none md:rounded-s-lg"
+//                         className="object-cover w-28 rounded-t-lg h-24 md:rounded-none md:rounded-s-lg"
 //                         src={item.img}
 //                         alt={item.name}
 //                       />
-//                       <p class="mb-3 font-bold text-base sm:text-lg md:text-lg lg:text-sm xl:text-lg px-2 py-2 text-black ">
+//                       <p className="mb-3 font-bold text-base sm:text-lg md:text-lg lg:text-sm xl:text-lg px-2 py-2 text-black ">
 //                         {truncateText(item.description, 40)}
 //                       </p>
 //                     </a>

@@ -5,7 +5,7 @@ import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 import { useNavigate } from "react-router";
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 const LatestNews = () => {
   const navigate = useNavigate();
@@ -168,7 +168,7 @@ const LatestNews = () => {
                   <img src={icon} alt="" className="slow-spin" />
                 </div>
               ) : (
-                <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2 justify-between md:w-full xl:w-[90%] mx-auto">
+                <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 justify-between md:w-full xl:w-[90%] mx-auto">
                   {getPaginatedNews().currentCards.map((news) => (
                     <div
                       key={news._id}

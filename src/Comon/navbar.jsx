@@ -3,21 +3,20 @@ import {
   DisclosureButton,
   DisclosurePanel,
   Menu,
-  Alert,
 } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Dialog, Transition } from "@headlessui/react";
 import logo from "../../src/images/Logo BB_1.png";
 import { Fragment, useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
-import { data, useLocation, useNavigate} from "react-router";
+import { data, useLocation, useNavigate } from "react-router";
 import { MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import axios from "axios";
 import { useAuth } from "../Context/authContext";
 
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 
 const Navbar = () => {
@@ -28,7 +27,6 @@ const Navbar = () => {
   const [categories, setCategories] = useState({ main: [], more: [] }); // State to hold categories
   const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -38,7 +36,6 @@ const Navbar = () => {
           },
         });
 
-console.log('response123', response.data)
         if (Array.isArray(response.data.Categorys)) {
           const allCategories = [
             {
@@ -146,7 +143,7 @@ console.log('response123', response.data)
                     onClick={() => handleCategoryClick(category)}
                   >
                     {category.category}
-                    <span class="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-black group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 transition-all h-0.5 bg-black group-hover:w-full"></span>
                   </button>
                 ))}
                 {/* More Dropdown */}
@@ -303,11 +300,15 @@ console.log('response123', response.data)
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {user ? (
               <div className="flex items-center">
-                <div className="bg-[#4360ac] text-white hidden sm:hidden md:hidden lg:flex rounded-full h-12 w-12  items-center justify-center">
+                <div
+                  className="bg-[#4360ac] text-white hidden sm:hidden md:hidden lg:flex rounded-full h-12 w-12 items-center justify-center cursor-pointer hover:bg-[#31478c] transition"
+                  onClick={() => navigate("/profile")}
+                >
                   {user.firstName.charAt(0).toUpperCase()}
                   {user.lastName.charAt(0).toUpperCase()}
                 </div>
               </div>
+
             ) : (
               <button
                 type="button"

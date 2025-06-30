@@ -9,7 +9,7 @@ import { followTag, unfollowTag } from "../Utils/api";
 import { toast } from "react-toastify";
 
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 
 const Tag = () => {
@@ -92,12 +92,6 @@ const Tag = () => {
             },
           }
         );
-
-        // console.log(
-        //   "API Response:=============================================",
-        //   response.data
-        // ); // Debug log
-
         if (response.data?.categoryAndTagWiseNews?.[0]?.news) {
           setTagslist(response.data.categoryAndTagWiseNews[0].news);
           setCurrentTag(response.data.categoryAndTagWiseNews[0].news);
@@ -312,7 +306,7 @@ const Tag = () => {
             </div>
           </div>
           <div className="col-span-3">
-            <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2 justify-between md:w-full xl:w-[90%] mx-auto">
+            <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 justify-between md:w-full xl:w-[90%] mx-auto">
               {loading ? (
                 <div className="w-10 my-20 h-10 mx-auto flex items-center justify-center">
                   <img src={icon} alt="" className=" slow-spin" />

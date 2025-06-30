@@ -22,6 +22,7 @@ import TermsPage from "./Services/TermsofUse";
 import Disclaimer from "./Services/disclamer";
 import PrivacyPolicy from "./Services/privacyPolicy";
 import RefundPolicy from "./Services/refundpolicy";
+import Profile from "./Profile/profile";
 
 function App() {
   const location = useLocation();
@@ -57,7 +58,7 @@ function App() {
     setShowPreferences(false);
     setIsVisible(false);
   };
-  
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -83,16 +84,19 @@ function App() {
         <Route path="/refundpolicy" element={<RefundPolicy />} />
         <Route path="/latestnews" element={<LatestNews />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/forgotpassword" element={<Forgotpassword />} />
         <Route path="/resetaPassword/:token" element={<Resetpassword />} />
+        <Route path="/newsdetails" element={<NewsDetails />} />
       </Routes>
       <ScrollToTop
         smooth
         color="white"
-        className="!rounded-full !flex !items-center !justify-center !w-16 !h-16 !bg-[#4360ac] !z-50 "
+        className="!rounded-full !flex !items-center !justify-center !w-12 !h-12 !bg-[#4360ac] !z-50 animate-bounce hover:animate-none hover:scale-110 transition-transform duration-300"
       />
+
       {isVisible && (
         <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 w-[96%] sm:w-[80%] md:w-[70%] lg:w-[65%] bg-black bg-opacity-80 text-white p-4 z-50 rounded-lg shadow-lg flex flex-col xl:flex-row items-center justify-between gap-4 md:gap-6">
           <button
@@ -193,7 +197,7 @@ function App() {
           </div>
         </div>
       )}
-      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forgotpassword" && location.pathname !== "/resetpassword" &&(
+      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forgotpassword" && location.pathname !== "/resetpassword" && (
         <Footer />
       )}
     </>

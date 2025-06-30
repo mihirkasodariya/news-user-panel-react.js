@@ -8,7 +8,7 @@ import icon from "../../src/images/Icon_1.png";
 import { followCategory, unfollowCategory } from "../Utils/api";
 import { toast } from "react-toastify";
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 const Category = () => {
   const location = useLocation();
@@ -36,7 +36,6 @@ const Category = () => {
           },
         });
         if (Array.isArray(response.data) ? response.data : []) {
-          // console.log("Category Tags Response:", response.data);
           setTag(Array.isArray(response.data) ? response.data : []);
           setLoading(false);
         } else if (response?.data?.status == 401) {
@@ -67,9 +66,6 @@ const Category = () => {
           categoryId: id,
           userId: JSON.parse(user)?._id,
         };
-
-        // console.log("User ID:payload", payload);
-
         const response = await axios.post(
           `${BASE_URL}/news/CategoryWiseNewsById`,
           payload,
@@ -294,7 +290,7 @@ const Category = () => {
                       <img src={icon} alt="" className="slow-spin" />
                     </div>
                   ) : (
-                    <div className="slider-container  sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2 justify-between md:w-full xl:w-[90%] mx-auto">
+                    <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 justify-between md:w-full xl:w-[90%] mx-auto">
                       {getPaginatedData().currentCards.map((story) => (
                         <div
                           key={story?._id}

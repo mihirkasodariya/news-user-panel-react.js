@@ -3,12 +3,12 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 
-const BASE_URL = "http://192.168.29.224:5000" || "http://localhost:5000";
+const BASE_URL = "http://192.168.29.225:5000" || "http://localhost:5000";
 
 const NewsDetails = () => {
   const location = useLocation();
   const { id } = useParams();
-  const { story } = location.state || {};
+  const { story, newsId, categoryId, tagId } = location.state || {};
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
 
@@ -16,18 +16,13 @@ const NewsDetails = () => {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [trendingStories, setTrendingStories] = useState([]);
-
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
         const user = localStorage.getItem("user");
         const userId = JSON.parse(user)?._id;
-        // console.log("User ID:123456", userId);
-
         setLoading(true);
         const response = await axios.get(`${BASE_URL}/news/CategoryWisenews`, { headers: { Authorization: localStorage.getItem("token"), } }, { userId });
-
-        // console.log("categoryWiseNews", response.data.categoryWiseNews);
         if (response.data.categoryWiseNews) {
           setStories(response.data.categoryWiseNews);
         } else if (response?.data?.status == 401) {
@@ -65,13 +60,11 @@ const NewsDetails = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // console.log("story", story);
-
       try {
         const payload = {
-          categoryId: story?.categoryId?._id || story?.categoryId,
-          tagId: story?.tagId?._id || story?.tagId,
-          newsId: story?._id || id,
+          categoryId: story?.categoryId?._id || story?.categoryId || categoryId,
+          tagId: story?.tagId?._id || story?.tagId || tagId,
+          newsId: story?._id || newsId || id,
         };
 
         const headers = {
@@ -148,7 +141,7 @@ const NewsDetails = () => {
           <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-20">
             Advertisement
           </div>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2 ">
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 ">
             <div className="lg:col-span-3 col-span-4">
               {newsData ? (
                 <>
@@ -182,7 +175,7 @@ const NewsDetails = () => {
 
                   <div className="rounded-md bg-blue-50 p-4 my-5">
                     <h1 className="text-[#4360ac] font-bold text-3xl">Summary</h1>
-                    <ul className="list-disc list-outside grid gap-4 px-4 py-2 text-xl marker:text-[#4360ac] font-normal">
+                    <ul className="list-disc list-outside grid gap-6 px-4 py-2 text-xl marker:text-[#4360ac] font-normal">
                       {newsData.summary.map((item, index) => (
                         <li key={index} className="text-gray-500 text-base py-1">
                           {truncateText(item.text)}
@@ -260,40 +253,37 @@ const NewsDetails = () => {
                   <img src={icon} alt="" className=" slow-spin" />
                 </div>
               ) : (
-                trendingStories.map((item) => {
-                  return (
-                    <>
-                      <div>
-                        <a
-                          onClick={() => handlenavigate(item)}
-                          key={item._id}
-                          class="flex flex-col items-center py-1 bg-white   shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200 "
-                        >
-                          <img
-                            class="object-cover flex-shrink-0  w-24 h-20 md:w-24 md:h-20 rounded-t-lg md:rounded-none md:rounded-s-lg"
-                            src={`${BASE_URL}/${item.heroimage?.replace(
-                              /\\/g,
-                              "/"
-                            )}`}
-                            alt={item.heading}
-                          />
-                          <p class="cursor-pointer mb-3 font-bold text-base sm:text-sm md:text-sm lg:text-sm xl:text-sm px-2 py-2 text-black ">
-                            {truncateText(item?.title, 45)}
-                          </p>
-                        </a>
-                      </div>
-                    </>
-                  );
-                })
-              )}
+                trendingStories.map((item, index) => (
+                  <React.Fragment key={item._id}>
+                    <div>
+                      <a
+                        onClick={() => handlenavigate(item)}
+                        className="flex flex-col items-center py-1 bg-white shadow-sm md:flex-row md:max-w-xl border-b-2 border-gray-200"
+                      >
+                        <img
+                          className="object-cover flex-shrink-0 w-24 h-20 md:w-24 md:h-20 rounded-t-lg md:rounded-none md:rounded-s-lg"
+                          src={`${BASE_URL}/${item.heroimage?.replace(/\\/g, "/")}`}
+                          alt={item.heading}
+                        />
+                        <p className="cursor-pointer mb-3 font-bold text-base sm:text-sm md:text-sm lg:text-sm xl:text-sm px-2 py-2 text-black">
+                          {truncateText(item?.title, 45)}
+                        </p>
+                      </a>
+                    </div>
 
-              <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-                Advertisement
-              </div>
+                    {/* Every 3 items, show an advertisement */}
+                    {(index + 1) % 3 === 0 && (
+                      <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
+                        Advertisement
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))
+              )}
             </div>
           </div>
           <hr className=" mt-3 hidden lg:grid " />
-          <div className="slider-container  sm:w-full hidden lg:grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4 justify-between md:w-full xl:w-full mx-auto">
+          <div className="slider-container  sm:w-full hidden lg:grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 justify-between md:w-full xl:w-full mx-auto">
             {loading ? (
               <div className="w-10 my-20 h-10 mx-auto flex items-center justify-center">
                 <img src={icon} alt="" className=" slow-spin" />
