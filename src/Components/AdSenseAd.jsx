@@ -47,7 +47,6 @@ const AdSenseAd = () => {
       data-ad-format="auto"
       data-full-width-responsive="true"
     >
-      Test Ad Placeholder
     </ins>
   );
 };
