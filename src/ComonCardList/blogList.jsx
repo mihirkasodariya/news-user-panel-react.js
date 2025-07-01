@@ -48,6 +48,7 @@ const BlogList = () => {
         {/* Top Advertisement */}
         <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-20">
           {/* Advertisement */}
+          <p>Advertisement</p>
             <AdSenseAd/>
         </div>
 
