@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import icon from "../../src/images/Icon_1.png";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import image from "../../src/images/Icon_1.png";
