@@ -4,11 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { MdAutoStories } from "react-icons/md";
 import { useNavigate } from "react-router";
-import { FaBlog} from "react-icons/fa6";
+import { FaBlog } from "react-icons/fa6";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
+import AdSenseAd from "../Components/AdSenseAd.jsx";
 function NextArrow({ onClick }) {
   return (
     <button
@@ -57,7 +57,7 @@ const Home = () => {
   const [latestNewsLoading, setLatestNewsLoading] = useState(true);
   // const [latestCategoryId, setLatestCategoryId] = useState(null);
   const [articles, setArticles] = useState([]);
-
+  const [isAdVisible, setIsAdVisible] = useState(false);
   // const [blogData, setBlogData] = useState({}); // ✅ useState with different name
   const handleNavigateBlog = (news) => {
     // navigate(`/newsdetails/${news._id}/${news.categoryId}/${news.tagId}`);
@@ -491,8 +491,8 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="grid  justify-center border border-black py-10 my-10  items-center w-full px-4  sm:w-full md:w-full xl:w-[90%] mx-auto">
-            <p>Advertisement</p>
+          <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+            <AdSenseAd width="1300px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
           </div>
         </div>
       )}
@@ -625,11 +625,11 @@ const Home = () => {
                 </div>
                 {/* Advertisement after every 2 categories */}
                 {(index + 1) % 2 === 0 && (
-                  <div className="grid  justify-center border border-black py-10  items-center w-full  sm:w-full md:w-full xl:w-[90%] mx-auto">
-                    <p>Advertisement</p>
+                  <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                    <AdSenseAd width="1300px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
                   </div>
                 )}
-              </div>
+              </div >
               {/* )} */}
             </>
           );
@@ -709,11 +709,11 @@ const Home = () => {
               </Slider>
             </div>
           </div>
-          <div className="grid justify-center border border-black py-10 my-10 items-center w-full px-4 sm:w-full md:w-full xl:w-[90%] mx-auto">
-            <p>Advertisement</p>
+          <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+            <AdSenseAd width="2000px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 };

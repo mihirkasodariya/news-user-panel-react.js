@@ -23,6 +23,8 @@ import Disclaimer from "./Services/disclamer";
 import PrivacyPolicy from "./Services/privacyPolicy";
 import RefundPolicy from "./Services/refundpolicy";
 import Profile from "./Profile/profile";
+import AdSenseAd from "./Components/AdSenseAd";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 function App() {
   const location = useLocation();
@@ -33,6 +35,8 @@ function App() {
     analytics: false,
     marketing: false,
   });
+  const [isAdVisible, setIsAdVisible] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Load stored consent on first render
   useEffect(() => {
@@ -97,6 +101,36 @@ function App() {
         className="!rounded-full !flex !items-center !justify-center !w-12 !h-12 !bg-[#4360ac] !z-50 animate-bounce hover:animate-none hover:scale-110 transition-transform duration-300"
       />
 
+     <div
+      className={`fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full sm:w-[90%] md:w-[728px] z-50 transition-transform duration-300 ease-in-out h-28 ${
+        isCollapsed ? "translate-y-[60%]" : "translate-y-0"
+      }`}
+    >
+      <div className="relative bg-white bg-opacity-90 rounded-t-md shadow-md px-3 py-0 h-[34px] flex items-center justify-center">
+        {/* Toggle Icon – Clickable ONLY on the icon */}
+        <div className="absolute top-0 left-0 flex items-center justify-center">
+          {isCollapsed ? (
+            <ChevronUp
+              size={18}
+              className="cursor-pointer hover:text-black text-gray-600"
+              onClick={() => setIsCollapsed(false)}
+            />
+          ) : (
+            <ChevronDown
+              size={18}
+              className="cursor-pointer hover:text-black text-gray-600"
+              onClick={() => setIsCollapsed(true)}
+            />
+          )}
+        </div>
+
+        {/* Ad */}
+        <div className="w-full">
+          <AdSenseAd width="100%" height="25px" />
+        </div>
+      </div>
+    </div>
+
       {isVisible && (
         <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 w-[96%] sm:w-[80%] md:w-[70%] lg:w-[65%] bg-black bg-opacity-80 text-white p-4 z-50 rounded-lg shadow-lg flex flex-col xl:flex-row items-center justify-between gap-4 md:gap-6">
           <button
@@ -140,66 +174,71 @@ function App() {
             </button>
           </div>
         </div>
-      )}
+      )
+      }
 
       {/* Preferences Modal */}
-      {showPreferences && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[400px]">
-            <button
-              className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
-              onClick={() => setShowPreferences(false)}
-            >
-              ✖
-            </button>
-
-            <h2 className="text-lg font-bold mb-4">Manage Cookie Preferences</h2>
-            <div className="space-y-2">
-              <label className="flex items-center space-x-2">
-                <input type="checkbox" checked disabled className="accent-blue-500" />
-                <span>Essential Cookies (Always Enabled)</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={consent.analytics}
-                  onChange={() => setConsent({ ...consent, analytics: !consent.analytics })}
-                  className="accent-blue-500"
-                />
-                <span>Enable Analytics Cookies</span>
-              </label>
-
-              <label className="flex items-center space-x-2">
-                <input
-                  type="checkbox"
-                  checked={consent.marketing}
-                  onChange={() => setConsent({ ...consent, marketing: !consent.marketing })}
-                  className="accent-blue-500"
-                />
-                <span>Enable Marketing Cookies</span>
-              </label>
-            </div>
-            <div className="mt-4 flex justify-between">
+      {
+        showPreferences && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] sm:w-[400px]">
               <button
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all"
-                onClick={savePreferences}
-              >
-                Save Preferences
-              </button>
-              <button
-                className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 transition-all"
+                className="absolute top-3 right-3 text-gray-600 hover:text-gray-800"
                 onClick={() => setShowPreferences(false)}
               >
-                Cancel
+                ✖
               </button>
+
+              <h2 className="text-lg font-bold mb-4">Manage Cookie Preferences</h2>
+              <div className="space-y-2">
+                <label className="flex items-center space-x-2">
+                  <input type="checkbox" checked disabled className="accent-blue-500" />
+                  <span>Essential Cookies (Always Enabled)</span>
+                </label>
+
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={consent.analytics}
+                    onChange={() => setConsent({ ...consent, analytics: !consent.analytics })}
+                    className="accent-blue-500"
+                  />
+                  <span>Enable Analytics Cookies</span>
+                </label>
+
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={consent.marketing}
+                    onChange={() => setConsent({ ...consent, marketing: !consent.marketing })}
+                    className="accent-blue-500"
+                  />
+                  <span>Enable Marketing Cookies</span>
+                </label>
+              </div>
+              <div className="mt-4 flex justify-between">
+                <button
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all"
+                  onClick={savePreferences}
+                >
+                  Save Preferences
+                </button>
+                <button
+                  className="bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400 transition-all"
+                  onClick={() => setShowPreferences(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forgotpassword" && location.pathname !== "/resetpassword" && (
-        <Footer />
-      )}
+        )
+      }
+      {
+        location.pathname !== "/login" && location.pathname !== "/register" && location.pathname !== "/forgotpassword" && location.pathname !== "/resetpassword" && (
+          <Footer />
+        )
+      }
     </>
   );
 }

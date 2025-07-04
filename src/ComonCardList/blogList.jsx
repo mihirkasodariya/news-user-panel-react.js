@@ -13,7 +13,7 @@ const BlogList = () => {
   const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [isAdVisible, setIsAdVisible] = useState(false);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -45,8 +45,8 @@ const BlogList = () => {
     <div className="my-36">
       <div className="grid justify-center items-center w-full px-4 mx-auto sm:w-full md:w-full xl:w-[80%]">
         {/* Top Advertisement */}
-        <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-20">
-            <AdSenseAd/>
+        <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+          <AdSenseAd width="1500px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
         </div>
 
         <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-2">
@@ -56,12 +56,12 @@ const BlogList = () => {
             </p>
 
             {/* Blog Title */}
-            <h1 className="text-4xl font-bold mb-3 text-center">
+            <h1 className="text-4xl font-bold mb-3">
               {article?.blog}
             </h1>
 
             {/* Date */}
-            <p className="text-gray-700 text-base text-center pb-4">
+            <p className="text-gray-700 text-end pb-4 text-sm">
               {new Date(article?.createdAt).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
@@ -85,8 +85,8 @@ const BlogList = () => {
             </h3>
 
             {/* Bottom Advertisement */}
-            <div className="border border-gray-800 text-gray-600 grid justify-center items-center h-40 mt-8">
-              Advertisement
+            <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+              <AdSenseAd width="1120px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
             </div>
           </div>
 
@@ -97,8 +97,11 @@ const BlogList = () => {
             </h1>
 
             {/* Sidebar Advertisement */}
-            <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-              Advertisement
+            <div className="grid justify-center mb-5 items-center ">
+              {/* Advertisementcv */}
+              <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
+                <AdSenseAd width="351px" height="90px" onLoad={(success) => setIsAdVisible(success)} />
+              </div>
             </div>
 
             {/* Trending Stories List */}
@@ -116,16 +119,11 @@ const BlogList = () => {
                     </p>
                   </div>
                 </div>
-
-                {/* Insert Advertisement after every 3 items */}
-                {(index + 1) % 3 === 0 && (
-                  <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-                    Advertisement
-                  </div>
-                )}
               </React.Fragment>
             ))}
-
+            <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center pt-2"}>
+              <AdSenseAd width="351px" height="90px" onLoad={(success) => setIsAdVisible(success)} />
+            </div>
           </div>
         </div>
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
+import AdSenseAd from "../Components/AdSenseAd.jsx";
 
 const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
@@ -16,6 +17,8 @@ const NewsDetails = () => {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [trendingStories, setTrendingStories] = useState([]);
+  const [isAdVisible, setIsAdVisible] = useState(false);
+
   useEffect(() => {
     const fetchCategoryNews = async () => {
       try {
@@ -138,10 +141,10 @@ const NewsDetails = () => {
       )}
       <div className="my-36">
         <div className="grid justify-center items-center w-full px-4 mx-auto  sm:w-full md:w-full xl:w-[80%]">
-          <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-20">
-            Advertisement
+          <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+            <AdSenseAd width="1500px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
           </div>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 ">
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 h-fits">
             <div className="lg:col-span-3 col-span-4">
               {newsData ? (
                 <>
@@ -157,10 +160,10 @@ const NewsDetails = () => {
                   >
                     {newsData.categoryDetails.category}
                   </p>
-                  <h1 className="text-4xl font-bold mb-3 text-center">
+                  <h1 className="text-4xl font-bold mb-3">
                     {newsData.title}
                   </h1>
-                  <p className="text-gray-700 text-base text-center pb-4">
+                  <p className="text-gray-700 text-end pb-4 text-sm">
                     {new Date(newsData.createdAt).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -237,16 +240,17 @@ const NewsDetails = () => {
                   <img src={icon} alt="" className=" slow-spin" />
                 </div>
               )}
-              <div className="border border-gray-800 text-gray-600 grid justify-center items-center h-40">
-                Advertisement
+              <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <AdSenseAd width="1120px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
               </div>
             </div>
-            <div className="lg:col-span-1 col-span-2 bg-white border border-gray-200 h-fit p-2  sticky top-32  w-full   rounded-xl">
+
+            <div className="lg:col-span-1 col-span-2 bg-white border border-gray-200 p-2 sticky top-32 w-full rounded-xl max-h-[calc(126vh-150px)] overflow-y-auto">
               <h1 className="font-extrabold text-2xl  mt-2 mb-5">
                 Trending Stories
               </h1>
-              <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-                Advertisement
+              <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
+                <AdSenseAd width="400px" height="90px" onLoad={(success) => setIsAdVisible(success)} />
               </div>
               {loading ? (
                 <div className="w-10 my-20 h-10 mx-auto flex items-center justify-center">
@@ -270,16 +274,12 @@ const NewsDetails = () => {
                         </p>
                       </a>
                     </div>
-
-                    {/* Every 3 items, show an advertisement */}
-                    {(index + 1) % 3 === 0 && (
-                      <div className="border border-gray-800 text-gray-600 grid justify-center mb-5 items-center h-20">
-                        Advertisement
-                      </div>
-                    )}
                   </React.Fragment>
                 ))
               )}
+              <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
+                <AdSenseAd width="400px" height="90px" onLoad={(success) => setIsAdVisible(success)} />
+              </div>
             </div>
           </div>
           <hr className=" mt-3 hidden lg:grid " />

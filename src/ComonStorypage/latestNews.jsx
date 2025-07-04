@@ -4,7 +4,7 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 import { useNavigate } from "react-router";
-
+import AdSenseAd from "../Components/AdSenseAd.jsx"; 
 const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 const LatestNews = () => {
@@ -20,7 +20,7 @@ const LatestNews = () => {
   const [latestNewsLoading, setLatestNewsLoading] = useState(true);
   const [tags, setTags] = useState([]);
   const [tagsLoading, setTagsLoading] = useState(true);
-
+  const [isAdVisible, setIsAdVisible] = useState(false);
 
   // Add this useEffect after your existing useEffect
   useEffect(() => {
@@ -156,8 +156,8 @@ const LatestNews = () => {
                   </div>
                 </div>
               </div>
-              <div className="border border-gray-800 text-gray-600 grid justify-center items-center h-[600px]">
-                Advertisement
+              <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
               </div>
             </div>
 
@@ -241,8 +241,8 @@ const LatestNews = () => {
                 </button>
               </div>
               {/* Bottom Advertisement */}
-              <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-64">
-                Advertisement
+              <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <AdSenseAd width="1500px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
               </div>
             </div>
           </div>

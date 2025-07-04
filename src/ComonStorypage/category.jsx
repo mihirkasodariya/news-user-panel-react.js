@@ -7,7 +7,7 @@ import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 import { followCategory, unfollowCategory } from "../Utils/api";
 import { toast } from "react-toastify";
-
+import AdSenseAd from "../Components/AdSenseAd.jsx";
 const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 
 const Category = () => {
@@ -22,6 +22,7 @@ const Category = () => {
   const [categoryData, setCategoryData] = useState(null);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdVisible, setIsAdVisible] = useState(false);
 
   useEffect(() => {
     const fetchTags = async () => {
@@ -277,8 +278,8 @@ const Category = () => {
                     </div>
                   </div>
                 </div>
-                <div className="border border-gray-800 text-gray-600 grid justify-center items-center h-[600px]">
-                  Advertisement
+                <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                  <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
                 </div>
               </div>
 
@@ -367,8 +368,8 @@ const Category = () => {
                     <FaArrowRightLong />
                   </button>
                 </div>
-                <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-64">
-                  Advertisement
+                <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                  <AdSenseAd width="1500px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
                 </div>
               </div>
             </div>
