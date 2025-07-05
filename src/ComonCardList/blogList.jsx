@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import image from "../../src/images/Icon_1.png";
-import AdSenseAd from "../Components/AdSenseAd.jsx"; // adjust path as needed
+import AdSenseAd from "../Components/AdSenseAd.jsx";
 
 const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
 

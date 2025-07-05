@@ -112,8 +112,8 @@ const Navbar = () => {
       className="bg-white w-screen fixed top-0  z-50  border-b-4 border-[#4360ac] "
     >
       <div className=" !w-full  px-2 sm:px-2 lg:px-4">
-        <div className="relative flex h-24 w-full items-center justify-between">
-          <div className="flex shrink-0 items-center cursor-pointer">
+        <div className="relative flex h-24 w-full items-center justify-between max-sm:justify-center">
+          <div className="flex justify-center shrink-0 items-center cursor-pointer">
             <img
               alt="Company Logo"
               src={logo}
@@ -121,7 +121,7 @@ const Navbar = () => {
               className="h-14 w-auto sm:h-14 md:h-14 lg:h-14 xl:h-20"
             />
           </div>
-          <div className="flex flex-1 items-center sm:items-stretch sm:justify-center">
+          <div className="flex max-sm:hidden flex-1 items-center sm:items-stretch sm:justify-center">
             <div className="hidden sm:hidden  md:hidden lg:block  sm:ml-6 ">
               <div className="flex space-x-4 items-center">
                 {/* Main Categories */}

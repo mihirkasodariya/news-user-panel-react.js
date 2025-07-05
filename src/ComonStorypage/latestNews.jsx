@@ -52,6 +52,7 @@ const LatestNews = () => {
       setLatestNewsLoading(true);
       try {
         const response = await axios.get(`${BASE_URL}/news/Latestnews`, { headers: { Authorization: localStorage.getItem("token"), } });
+        console.log(response.data)
         if (response.data) {
           // Combine all news into a single array and sort by date
           const allNews = [

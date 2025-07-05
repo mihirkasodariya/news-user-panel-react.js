@@ -278,7 +278,13 @@ const Category = () => {
                     </div>
                   </div>
                 </div>
-                <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
+                  <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
+                </div>
+                <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
+                  <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
+                </div>
+                <div className={isAdVisible ? "flex justify-center items-center" : "flex justify-center items-center"}>
                   <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
                 </div>
               </div>

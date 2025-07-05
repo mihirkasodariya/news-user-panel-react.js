@@ -100,36 +100,43 @@ function App() {
         color="white"
         className="!rounded-full !flex !items-center !justify-center !w-12 !h-12 !bg-[#4360ac] !z-50 animate-bounce hover:animate-none hover:scale-110 transition-transform duration-300"
       />
+      {/* Show ad ONLY on `lg` and up (desktop) */}
+      <div className="hidden lg:block">
+        {!["/login", "/register", "/forgotpassword", "/resetpassword"].includes(location.pathname) && (
+          <div
+            className={`fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full sm:w-[90%] md:w-[728px] z-50 transition-transform duration-300 ease-in-out h-28 ${isCollapsed ? "translate-y-[60%]" : "translate-y-0"
+              }`}
+          >
+            <div className="relative bg-white bg-opacity-90 rounded-t-md shadow-md px-3 h-[34px] flex items-center justify-center">
+              {/* Toggle Icon */}
+              <div className="absolute top-1 left-2">
+                {isCollapsed ? (
+                  <ChevronUp
+                    size={24}
+                    className="cursor-pointer text-gray-600 hover:text-black"
+                    onClick={() => setIsCollapsed(false)}
+                  />
+                ) : (
+                  <ChevronDown
+                    size={18}
+                    className="cursor-pointer text-gray-600 hover:text-black"
+                    onClick={() => setIsCollapsed(true)}
+                  />
+                )}
+              </div>
 
-     <div
-      className={`fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full sm:w-[90%] md:w-[728px] z-50 transition-transform duration-300 ease-in-out h-28 ${
-        isCollapsed ? "translate-y-[60%]" : "translate-y-0"
-      }`}
-    >
-      <div className="relative bg-white bg-opacity-90 rounded-t-md shadow-md px-3 py-0 h-[34px] flex items-center justify-center">
-        {/* Toggle Icon – Clickable ONLY on the icon */}
-        <div className="absolute top-0 left-0 flex items-center justify-center">
-          {isCollapsed ? (
-            <ChevronUp
-              size={18}
-              className="cursor-pointer hover:text-black text-gray-600"
-              onClick={() => setIsCollapsed(false)}
-            />
-          ) : (
-            <ChevronDown
-              size={18}
-              className="cursor-pointer hover:text-black text-gray-600"
-              onClick={() => setIsCollapsed(true)}
-            />
-          )}
-        </div>
-
-        {/* Ad */}
-        <div className="w-full">
-          <AdSenseAd width="100%" height="25px" />
-        </div>
+              {/* Ad Container */}
+              <div className="w-full mt-[34px]">
+                <AdSenseAd
+                  width="708px"
+                  height="90px"
+                  onLoad={(success) => setIsAdVisible(success)}
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
 
       {isVisible && (
         <div className="fixed bottom-10 left-1/2 transform -translate-x-1/2 w-[96%] sm:w-[80%] md:w-[70%] lg:w-[65%] bg-black bg-opacity-80 text-white p-4 z-50 rounded-lg shadow-lg flex flex-col xl:flex-row items-center justify-between gap-4 md:gap-6">
