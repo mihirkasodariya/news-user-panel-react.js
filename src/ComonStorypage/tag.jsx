@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import icon from "../../src/images/Icon_1.png";
 import { followTag, unfollowTag } from "../Utils/api";
 import { toast } from "react-toastify";
+import AdSenseAd from "../Components/AdSenseAd.jsx"; 
 
 
 const BASE_URL = "https://news-backend-node-js.onrender.com" || "http://localhost:5000";
@@ -25,6 +26,8 @@ const Tag = () => {
   const [currentTag, setCurrentTag] = useState([]);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isAdVisible, setIsAdVisible] = useState(false);
+  
   const cardsPerPage = 9;
 
   useEffect(() => {
@@ -76,9 +79,8 @@ const Tag = () => {
           console.error("Missing categoryId or tagId");
           return;
         }
-
         const payload = {
-          categoryId: categoryId,
+          categoryId: categoryId?._id,
           tagId: tagId,
         };
 
@@ -301,9 +303,9 @@ const Tag = () => {
                 </div>
               </div>
             </div>
-            <div className="border border-gray-800 text-gray-600 grid justify-center items-center h-[600px]">
-              Advertisement
-            </div>
+           <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <AdSenseAd width="400px" height="715px" onLoad={(success) => setIsAdVisible(success)} />
+              </div>
           </div>
           <div className="col-span-3">
             <div className="slider-container sm:w-full grid lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-6 justify-between md:w-full xl:w-[90%] mx-auto">
@@ -374,9 +376,9 @@ const Tag = () => {
                 <FaArrowRightLong />
               </button>
             </div>
-            <div className="border border-gray-800 text-gray-600 grid justify-center mb-10 items-center h-64">
-              Advertisement
-            </div>
+             <div className={isAdVisible ? "flex justify-center items-center pb-9" : "flex justify-center items-center"}>
+                <AdSenseAd width="1500px" height="60px" onLoad={(success) => setIsAdVisible(success)} />
+              </div>
           </div>
         </div>
       </div>

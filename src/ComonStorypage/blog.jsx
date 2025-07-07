@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import categorybg from "../../src/images/comonbgimage.webp";
-import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import axios from "axios";
 import icon from "../../src/images/Icon_1.png";
 import { useNavigate } from "react-router";
